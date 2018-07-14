@@ -5,7 +5,7 @@ Wt=tf.Variable(tf.random_normal([128,128]))
 bt=tf.Variable(tf.zeros([128]))
 Wh=tf.Variable(tf.random_normal([128,128]))
 bh=tf.Variable(tf.zeros([128]))
-
+tf.global_variables_initializer()
 def word_to_vec(word):
       i=0
       data=[len(word),128]
@@ -36,3 +36,4 @@ def lstm(sentence):
             g=tf.nn.relu(tf.add(tf.matmul(Wh,y)+bh))
             z+=tf.add(tf.multiply(t,g)+tf.multiply((1-t),word))
       return z
+with tf.Session()
