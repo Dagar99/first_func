@@ -2,16 +2,16 @@ from __future__ import print_function
 import keras
 import numpy as np
 from keras.models import Sequential
-from keras.layers import Conv2D, MaxPooling2D
-character=tf.Variable(tf.random_uniform([126,128]))
-Wt=np.random.random(128,128)
+from keras.layers import Conv2D, MaxPooling2D,Flatten
+character=np.random.random((128,128))
+Wt=np.random.random((128,128))
 bt=np.zeros(128)
-Wh=np.random.random(128,128)
+Wh=np.random.random((128,128))
 bh=np.zeros(128)
-'''I have not used model fit anywhwere as it is just a prototype'''
+# I have not used model fit anywhwere as it is just a prototype
 def word_to_vec(word):
     i=0
-    data=[len(word),128]
+    data=np.empty((len(word),128))
     for i in range(len(word)):
         data[i]=character[ord(word[i])] 
     model = Sequential()
@@ -27,6 +27,7 @@ def word_to_vec(word):
                   metrics=['accuracy'])
     t=model
     return t,y
+
 def lstm(sentence):
     lis=sentence.split()
     i=0
